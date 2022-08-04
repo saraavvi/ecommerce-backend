@@ -1,25 +1,25 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-const dotenv = require("dotenv");
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-var logger = require('morgan');
+const logger = require('morgan');
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: './config.env' });
 
 const database = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD,
 );
 mongoose
   .connect(database)
-  .then(() => console.log("connected to db"))
+  .then(() => console.log('connected to db'))
   .catch((error) => console.log(error));
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
