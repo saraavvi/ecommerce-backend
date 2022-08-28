@@ -13,17 +13,17 @@ exports.addNewProduct = async (req, res) => {
   });
 
   await product.save();
-  res.status(201).json({ product });
+  res.status(201).json({ data: product });
 };
 
 exports.allProducts = async (req, res) => {
   const products = await Product.find({});
-  res.status(200).json({ products });
+  res.status(200).json({ data: products });
 };
 
 exports.findProduct = async (req, res) => {
   const product = await Product.findOne({ _id: req.params.id });
-  res.status(200).json({ product });
+  res.status(200).json({ data: product });
 };
 
 exports.updateProduct = async (req, res) => {
@@ -35,7 +35,7 @@ exports.updateProduct = async (req, res) => {
     title, price, description, category,
   }, { new: true });
   
-  return res.status(200).json({ updatedProduct });
+  return res.status(200).json({ data: updatedProduct });
 };
 
 exports.deleteProduct = async (req, res) => {
